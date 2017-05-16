@@ -1,0 +1,108 @@
+#
+Options +FollowSymLinks -MultiViews
+RewriteEngine On
+RewriteBase /
+
+#Eliminacion de index (lleva a raiz de la carpeta en la que se encuentra)
+#RewriteRule ^index\.html$ / [R=301,L]
+#RewriteRule ^(.*)/index\.html$ /$1/ [R=301,L]
+
+#Redireccionamiento de www
+RewriteCond %{HTTP_HOST} !^123seguro.cursoplatzi$ [NC]
+RewriteRule ^(.*)$ http://123seguro.cursoplatzi/$1 [L,R=301]
+
+#Acceso a .php sin extension
+#Evito confusion con subdirectorios
+RewriteCond %{REQUEST_FILENAME} ^index.*
+RewriteRule ^([^/]+)/$ $1.html
+#Saco extension
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^(([^/]+/)*[^./]+)/$ $1.html
+
+#Agrego /
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !(\.[a-zA-Z0-9]{1,5}|/)$
+RewriteRule ^(.*)$ /$1/ [R=301,L]
+
+#Redirección de .php a sin extension
+RewriteCond %{THE_REQUEST} ^(.+)\.html([#?][^\ ]*)?\ HTTP/
+RewriteRule ^(.+)\.html$ $1/ [R=301,L]
+
+<IfModule mod_deflate.c>
+  # Compress HTML, CSS, JavaScript, Text, XML and fonts
+  AddOutputFilterByType DEFLATE application/javascript
+  AddOutputFilterByType DEFLATE application/rss+xml
+  AddOutputFilterByType DEFLATE application/vnd.ms-fontobject
+  AddOutputFilterByType DEFLATE application/x-font
+  AddOutputFilterByType DEFLATE application/x-font-opentype
+  AddOutputFilterByType DEFLATE application/x-font-otf
+  AddOutputFilterByType DEFLATE application/x-font-truetype
+  AddOutputFilterByType DEFLATE application/x-font-ttf
+  AddOutputFilterByType DEFLATE application/x-javascript
+  AddOutputFilterByType DEFLATE application/xhtml+xml
+  AddOutputFilterByType DEFLATE application/xml
+  AddOutputFilterByType DEFLATE font/opentype
+  AddOutputFilterByType DEFLATE font/otf
+  AddOutputFilterByType DEFLATE font/ttf
+  AddOutputFilterByType DEFLATE image/svg+xml
+  AddOutputFilterByType DEFLATE image/x-icon
+  AddOutputFilterByType DEFLATE text/css
+  AddOutputFilterByType DEFLATE text/html
+  AddOutputFilterByType DEFLATE text/javascript
+  AddOutputFilterByType DEFLATE text/plain
+  AddOutputFilterByType DEFLATE text/xml
+
+  # Remove browser bugs (only needed for really old browsers)
+  BrowserMatch ^Mozilla/4 gzip-only-text/html
+  BrowserMatch ^Mozilla/4\.0[678] no-gzip
+  BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+  Header append Vary User-Agent
+</IfModule>
+
+## EXPIRES CACHING ##
+<IfModule mod_expires.c>
+ExpiresActive On
+ExpiresByType image/jpg "access 1 year"
+ExpiresByType image/jpeg "access 1 year"
+ExpiresByType image/gif "access 1 year"
+ExpiresByType image/png "access 1 year"
+ExpiresByType text/css "access 1 month"
+ExpiresByType application/pdf "access 1 month"
+ExpiresByType text/x-javascript "access 1 month"
+ExpiresByType application/x-shockwave-flash "access 1 month"
+ExpiresByType image/x-icon "access 1 year"
+ExpiresDefault "access 1 month"
+</IfModule>
+## EXPIRES CACHING ##
+
+
+
+
+
+
+
+Redirect 301 /pagina-vieja/ http://123seguro.cursoplatzi
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,151 @@
+/* Functions
+$css_rule = all,background-color,border,border-radius,color,etc
+$time = .1s,.5s,1s,10s
+$function = linear,ease,ease-in,ease-out,ease-in-out
+$delay = .1s,.5s,1s,10s
+*/
+@mixin transition($css_rule, $time, $function:"linear", $delay:"") {
+  -webkit-transition: $css_rule $time unquote($function) unquote($delay);
+  -o-transition: $css_rule $time unquote($function) unquote($delay);
+  -moz-transition: $css_rule $time unquote($function) unquote($delay);
+  -ms-transition: $css_rule $time unquote($function) unquote($delay);
+  transition: $css_rule $time unquote($function) unquote($delay);
+}
+
+@mixin rotate($grades) {
+  -ms-transform: rotate($grades);
+  -webkit-transform: rotate($grades);
+  transform: rotate($grades);
+}
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin box-shadow($p1, $p2, $p3, $p4) {
+  -webkit-box-shadow: $p1 $p2 $p3 $p4;
+  -moz-box-shadow: $p1 $p2 $p3 $p4;
+  box-shadow: $p1 $p2 $p3 $p4;
+}
+
+@mixin gradient($primary, $secondary) {
+  background: $primary;
+  background: -moz-linear-gradient(top,  $primary 0%, $primary 50%, $secondary 51%, $secondary 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$primary), color-stop(50%,$primary), color-stop(51%,$secondary), color-stop(100%,$secondary));
+  background: -webkit-linear-gradient(top,  $primary 0%,$primary 50%,$secondary 51%,$secondary 100%);
+  background: -o-linear-gradient(top,  $primary 0%,$primary 50%,$secondary 51%,$secondary 100%);
+  background: -ms-linear-gradient(top,  $primary 0%,$primary 50%,$secondary 51%,$secondary 100%);
+  background: linear-gradient(to bottom,  $primary 0%,$primary 50%,$secondary 51%,$secondary 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#{$primary}', endColorstr='#{$secondary}',GradientType=0 );
+}
+
+@mixin opacity($opacity_decimal) {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=#{$opacity_decimal*100})";
+  filter: alpha(opacity=$opacity_decimal*100);
+  -moz-opacity: $opacity_decimal;
+  -khtml-opacity: $opacity_decimal;
+  opacity: $opacity_decimal;
+}
+
+@mixin box-sizing($border_type) {
+  -webkit-box-sizing: $border_type;
+  -moz-box-sizing: $border_type;
+  box-sizing: $border_type;
+}
+
+@mixin column-count($cols) {
+  -moz-column-count: $cols;
+  -webkit-column-count: $cols;
+  column-count: $cols;
+}
+
+@mixin column-gap($gap) {
+  -moz-column-gap: $gap;
+  -webkit-column-gap: $gap;
+  column-gap: $gap;
+}
+
+@mixin column-width($percentage) {
+  -moz-column-width: $percentage;
+  -webkit-column-width: $percentage;
+  column-width: $percentage;
+}
+/* Typed.js */
+.typed-cursor{
+    opacity: 1;
+    -webkit-animation: blink 0.7s infinite;
+    -moz-animation: blink 0.7s infinite;
+    animation: blink 0.7s infinite;
+}
+@keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+@-webkit-keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+@-moz-keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+/*
+RESET
+*/
+* {
+  outline: none;
+}
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-weight: 400;
+  font-size: 100%;
+  text-decoration: none;
+  vertical-align: baseline;
+}
+b,strong {
+  font-weight: 700;
+}
+article, aside, details, figcaption, figure,
+footer, header, menu, nav, section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
